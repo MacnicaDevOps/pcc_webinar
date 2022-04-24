@@ -106,5 +106,5 @@ jobs:
       - run:
           name: deployment
           command: |
-            kubectl apply -f web.yaml
+            kubectl apply -f web.yaml --validate=false
             kubectl get pods
