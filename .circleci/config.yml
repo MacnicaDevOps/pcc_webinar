@@ -92,11 +92,12 @@ jobs:
       - run:
           name: Create Kubernetes Manifest
           command: |
-            deploy_image="${imagename}¥/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_PREVIOUS_BUILD_NUM}"
-            cat manifest_template.yaml | sed -e 's/<IMAGE_NAME>/${deploy_image}/g' > web.yaml            
-#            deploy_image=$imagename"/"$CIRCLE_PROJECT_REPONAME":"$CIRCLE_PREVIOUS_BUILD_NUM
-#            echo "      - image: "$deploy_image >> web.yaml
+            deploy_image=$imagename"/"$CIRCLE_PROJECT_REPONAME":"$CIRCLE_PREVIOUS_BUILD_NUM
+            cat manifest_template.yaml > web.yaml
+            echo "          image: "$deploy_image >> web.yaml
 #            cat web2.yaml >> web.yaml
+#            deploy_image="${imagename}¥/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_PREVIOUS_BUILD_NUM}"
+#            cat manifest_template.yaml | sed -e 's/<IMAGE_NAME>/${deploy_image}/g' > web.yaml            
 #      - run:
 #          name: Twistlock scan IaC
 #          command: |
