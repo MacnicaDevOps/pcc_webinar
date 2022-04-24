@@ -57,7 +57,7 @@ jobs:
           command: |
             curl -k -u $tl_u:$tl_p --output twistcli $TL_URL"/api/v1/util/twistcli"
             chmod +x twistcli
-            ./twistcli images scan --details --address $TL_URL -u $tl_u -p $tl_p $imagename"/"$CIRCLE_PROJECT_REPONAME":"$CIRCLE_BUILD_NUM 
+            ./twistcli images scan --address $TL_URL -u $tl_u -p $tl_p $imagename"/"$CIRCLE_PROJECT_REPONAME":"$CIRCLE_BUILD_NUM --details
 
       - run:
           name: Publish Image
