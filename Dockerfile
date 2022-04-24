@@ -1,5 +1,5 @@
-From nginx:1.19.2
-MAINTAINER macnica <container_sol@cs.macnica.net>
-COPY index.html /usr/share/nginx/html/
+From nginx
+MAINTAINER macnica <prisma-tech@macnica.co.jp>
+COPY ["index.html", "macnicadevops.png", "/usr/share/nginx/html/"]
 HEALTHCHECK CMD curl http://localhost
 EXPOSE 80
