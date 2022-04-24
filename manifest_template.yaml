@@ -30,15 +30,7 @@ spec:
         tier: frontend
     spec:
       containers:
-        image: <IMAGE_NAME>
-        name: web
-        ports:
-        - containerPort: 80
-          name: web
-        livenessProbe:
-          initialDelaySeconds: 10
-          periodSeconds: 10
-          exec:
-            command:
-              - "true"
-
+        - name: web
+          image: <IMAGE_NAME>
+          ports:
+          - containerPort: 80 
