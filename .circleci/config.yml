@@ -48,16 +48,16 @@ jobs:
       - run:
           name: simple test
           command: |
-            docker run --rm --name web -p 80:80 -d $imagename"/"$CIRCLE_PROJECT_REPONAME":"$CIRCLE_BUILD_NUM
+            docker run --rm --name web -p 80:80 -d "${imagename}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_BUILD_NUM}"
             sleep 1 && curl http://localhost
             docker stop web
 
       - run:
           name: Twistlock Vuln/Compliance check
           command: |
-            curl -k -u $tl_u:$tl_p --output twistcli $TL_URL"/api/v1/util/twistcli"
-            chmod +x twistcli
-            ./twistcli images scan --address $TL_URL -u $tl_u -p $tl_p $imagename"/"$CIRCLE_PROJECT_REPONAME":"$CIRCLE_BUILD_NUM --details
+            curl -k -u "${tl_u}:${tl_p}" --output twistcli "${TL_URL}/api/v1/util/twistcli"
+            chmod a+x twistcli
+            ./twistcli images scan --address "${TL_URL}" -u "${tl_u}" -p "${tl_p}" "${imagename}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_BUILD_NUM}" --details
 
       - run:
           name: Publish Image
