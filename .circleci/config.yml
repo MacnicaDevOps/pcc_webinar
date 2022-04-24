@@ -93,7 +93,7 @@ jobs:
           name: Create Kubernetes Manifest
           command: |
             deploy_image="${imagename}¥/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_PREVIOUS_BUILD_NUM}"
-            cat manifest_template.yaml | sed -e 's/<IMAGE_NAME>/'${deploy_image}'/g' > web.yaml            
+            cat manifest_template.yaml | sed -e 's/<IMAGE_NAME>/${deploy_image}/g' > web.yaml            
 #            deploy_image=$imagename"/"$CIRCLE_PROJECT_REPONAME":"$CIRCLE_PREVIOUS_BUILD_NUM
 #            echo "      - image: "$deploy_image >> web.yaml
 #            cat web2.yaml >> web.yaml
@@ -107,5 +107,5 @@ jobs:
       - run:
           name: deployment
           command: |
-            kubectl apply -f web.yaml --validate=false
+            kubectl apply -f web.yaml
             kubectl get pods
